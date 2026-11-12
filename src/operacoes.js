@@ -1,3 +1,5 @@
+module.exports = { calcularDesconto, verificarAprovacao, validarCadastro, calcularFrete, converterCelsiusParaFahrenheit, calcularTotal, validarSenha, verificarEstoque, calcularMedia };
+
 //Questão 1
 function calcularDesconto(valor, percentual) {
     if (valor <= 0 || percentual < 0 || percentual > 100) {
@@ -58,21 +60,17 @@ function calcularTotal(quantidade, precoUnitario) {
     }
     return quantidade * precoUnitario;
 }
-
 //Questão 7
 function validarSenha(senha) {
-    if (senha.length < 8) {
-        return false;
-    }
-    return true;
+    return senha.length >= 8 && senha.length <= 12 && senha.length !== 10;
 }
 
 //Questão 8
 function verificarEstoque(estoque, quantidadeSolicitada) {
-    if (quantidadeSolicitada <= 0) {
+    if (quantidadeSolicitada < 0) {
         throw new Error("Quantidade inválida");
     }
-    if (quantidadeSolicitada > estoque) {
+    if (quantidadeSolicitada > estoque || quantidadeSolicitada === 0) {
         return "Estoque insuficiente";
     }
     return "Pedido aprovado";
@@ -80,8 +78,5 @@ function verificarEstoque(estoque, quantidadeSolicitada) {
 
 //Questão 9
 function calcularMedia(nota1, nota2) {
-    if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10) {
-        throw new Error("Notas inválidas");
-    }
     return (nota1 + nota2) / 2;
 }
